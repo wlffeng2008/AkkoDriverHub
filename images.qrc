@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/bianji.svg</file>
+        <file>images/duima.svg</file>
+        <file>images/m-fixline.png</file>
+        <file>images/m-lang.png</file>
+        <file>images/m-reset.png</file>
+        <file>images/btn-close.png</file>
+    </qresource>
+</RCC>

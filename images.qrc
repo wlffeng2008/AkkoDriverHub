@@ -6,5 +6,10 @@
         <file>images/m-lang.png</file>
         <file>images/m-reset.png</file>
         <file>images/btn-close.png</file>
+        <file>images/delete.png</file>
+        <file>images/battery.png</file>
+        <file>images/a-left.png</file>
+        <file>images/a-right.png</file>
+        <file>images/AkkoFlag.png</file>
     </qresource>
 </RCC>

@@ -10,6 +10,9 @@
     <height>480</height>
    </rect>
   </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
   <property name="windowTitle">
    <string>Frame</string>
   </property>
@@ -18,7 +21,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0,0">
    <property name="spacing">
-    <number>10</number>
+    <number>15</number>
    </property>
    <property name="bottomMargin">
     <number>15</number>
@@ -31,7 +34,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="labelTitle1">
+    <widget class="QLabel" name="labelName">
      <property name="text">
       <string>Name</string>
      </property>
@@ -61,7 +64,13 @@
      <item>
       <widget class="QLabel" name="labelPower">
        <property name="text">
-        <string>Power</string>
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="images.qrc">:/images/battery.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -71,7 +80,10 @@
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="text">
-        <string>Delete</string>
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="images.qrc">:/images/delete.png</pixmap>
        </property>
       </widget>
      </item>
@@ -92,6 +104,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
  <connections/>
 </ui>

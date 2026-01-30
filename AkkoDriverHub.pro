@@ -4,8 +4,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
 
-CONFIG += c++17
-
 QMAKE_PROJECT_DEPTH = 0
 
 CODECFORTR = UTF-8
@@ -20,6 +18,11 @@ QMAKE_TARGET_PRODUCT = "AKKO"
 QMAKE_TARGET_DESCRIPTION = "AKKO: Created by Qt6.10.0"
 QMAKE_TARGET_COPYRIGHT = "AKKO(2026.01)"
 RC_LANG = 0x0004
+
+# 仅Windows平台生效
+win32 {
+    LIBS += -luser32 -lkernel32 -lpsapi # 链接窗口/进程相关库
+}
 
 LIBS += -L$$PWD -lhidapi
 

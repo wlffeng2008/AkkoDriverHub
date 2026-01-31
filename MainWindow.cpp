@@ -31,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowFlags(windowFlags() | Qt::FramelessWindowHint |
                    Qt::MSWindowsFixedSizeDialogHint);
     setAttribute(Qt::WA_TranslucentBackground);
+
     setStyleSheet("QMainWindow{background-color: rgba(255, 255, 255, 1); border: 1px solid skyblue; border-radius: 20px; }");
 
     m_pLangMenu = new ModuleLangMenu(this);
@@ -85,6 +86,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->labelPrev->setHidden(true);
     ui->labelNext->setHidden(true);
+
     ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
@@ -660,7 +662,6 @@ void MainWindow::addDevice(quint32 id)
             connect(device,&FrameDeviceShow::onClicked,this,[=](void *device){
                 AkkoDeviceInfo *dev = static_cast<AkkoDeviceInfo *>(device);
                 settings.setValue("AkkoDeviceIndex",dev->type == 0 ? 5 : 9);
-
                 m_pLangMenu->hide();
 
                 HWND hParentWnd = (HWND)ui->frameEmb->winId();
@@ -780,7 +781,9 @@ void MainWindow::enumDevice()
     }
 
     QString strInfo = QString(tr("我的设备")) + QString("(%1)").arg(VIDList.count());
+
     ui->labelInfo0->setText(strInfo);
+
 }
 
 MainWindow::~MainWindow() { delete ui; }
@@ -790,6 +793,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e)
     if (e->type() == QEvent::MouseButtonRelease)
     {
         QScrollBar *sb = ui->scrollArea->horizontalScrollBar();
+
         if (ui->labelPrev == obj || m_pFloatLeft == obj)
         {
             m_pLangMenu->hide();

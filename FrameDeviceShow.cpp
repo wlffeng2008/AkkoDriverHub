@@ -15,11 +15,12 @@ FrameDeviceShow *FrameDeviceShow::getFrameShow(int index, QWidget *parent)
         pFrame = new FrameDeviceShow(parent);
         pGroup[index] = pFrame;
     }
+
     return pFrame;
 }
 
-FrameDeviceShow::FrameDeviceShow(QWidget *parent) : QFrame(parent), ui(new Ui::FrameDeviceShow)
-{
+FrameDeviceShow::FrameDeviceShow(QWidget *parent)
+    : QFrame(parent), ui(new Ui::FrameDeviceShow) {
     ui->setupUi(this);
 
     if (!s_active)
@@ -77,7 +78,6 @@ void FrameDeviceShow::setSelect(bool select)
         setStyleSheet("#FrameDeviceShow{background-color:#E0E0E0; border-radius:32px; border: 1px solid #B0B0B0;}");
     else
         setStyleSheet("#FrameDeviceShow{background-color:#F4F4F4; border-radius:32px; border: 1px solid transparent;}");
-
     update();
 }
 
@@ -90,10 +90,8 @@ void simulateMouseClick(QWidget *targetWgt, QPoint pos, Qt::MouseButton button =
     QApplication::sendEvent(targetWgt, &releaseEvt);
 }
 
-bool FrameDeviceShow::event(QEvent *event)
-{
-    if (event->type() == QEvent::Wheel)
-    {
+bool FrameDeviceShow::event(QEvent *event) {
+    if (event->type() == QEvent::Wheel) {
         QWheelEvent *we = static_cast<QWheelEvent *>(event);
         QScrollBar *pSB = m_sa->horizontalScrollBar();
         pSB->setValue(pSB->value() + we->angleDelta().y());

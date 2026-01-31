@@ -51,7 +51,6 @@ int main(int argc, char *argv[]) {
         QLabel#labelLarge,#labelLarge1,#labelLarge2{ font-size: 40px; font-weight: 600;}
         QLabel#labelName,#labelName1,#labelName2{ font-size: 32px; font-weight: 600;}
         QLabel#labelInfo0{ font-size: 32px; font-weight: 600; color:#202020;}
-
         QScrollBar:vertical,
         QScrollBar:horizontal {
             background: transparent;

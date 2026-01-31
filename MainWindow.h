@@ -10,8 +10,10 @@
 
 #include <QMainWindow>
 #include <QLayout>
+
 #include <QDialog>
 #include <QTimer>
+
 
 #include "ModuleLangMenu.h"
 
@@ -45,9 +47,9 @@ protected:
             //if(msg->wParam == DBT_DEVICEARRIVAL       )  emit devicePluggined(true);
             //if(msg->wParam == DBT_DEVICEREMOVECOMPLETE)  emit devicePluggined(false);
             emit devicePluggined(true);
-            return true ;
+            return true;
         }
-        return false ;
+        return false;
     }
 };
 
@@ -66,6 +68,7 @@ protected:
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
     bool eventFilter(QObject *obj, QEvent *e) override;
+
     bool event(QEvent *event) override;
 
     void enumDevice();

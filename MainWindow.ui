@@ -372,6 +372,7 @@ background:transparent;</string>
    </widget>
    <zorder>frameEmb</zorder>
    <zorder>labelLarge</zorder>
+
    <zorder>layoutWidget</zorder>
    <zorder>pushButtonExit</zorder>
    <zorder>pushButtonLang</zorder>

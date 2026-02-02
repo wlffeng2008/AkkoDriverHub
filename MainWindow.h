@@ -76,6 +76,7 @@ protected:
 
 private slots:
     void on_pushButtonExit_clicked();
+    void on_pushButtonMin_clicked();
 
 private:
     Ui::MainWindow *ui;

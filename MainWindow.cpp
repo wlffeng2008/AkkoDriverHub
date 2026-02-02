@@ -16,6 +16,10 @@
 #include <QWheelEvent>
 #include <QProcess>
 #include <QSettings>
+#include <QMessageBox>
+#include <QSystemTrayIcon>
+#include <QMenu>
+#include <QAction>
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -212,6 +216,39 @@ MainWindow::MainWindow(QWidget *parent)
             ::SetWindowPos(s_hWndEmb, HWND_BOTTOM, 0, 0, 0, 0, SWP_HIDEWINDOW | SWP_NOSIZE);
         }
     });
+
+    {
+        QSystemTrayIcon *trayIcon = new QSystemTrayIcon(this);
+        trayIcon->setIcon(QIcon(":/images/logo.png"));
+        trayIcon->setToolTip("AKKO Cloud Driver");
+        trayIcon->show();
+
+        connect(trayIcon,&QSystemTrayIcon::activated,this,[=](QSystemTrayIcon::ActivationReason reason){
+            if(reason != QSystemTrayIcon::Context)
+            {
+                if(this->isHidden() || this->isMinimized())
+                    showNormal();
+                else
+                    this->hide();
+            }
+        }) ;
+
+        QMenu *trayMenu = new QMenu(this);
+
+        QAction *showAction = new QAction(tr("显示窗口"), this);
+        QAction *hideAction = new QAction(tr("隐藏窗口"), this);
+        QAction *exitAction = new QAction(tr("退出程序"), this);
+
+        trayMenu->addAction(showAction);
+        trayMenu->addAction(hideAction);
+        trayMenu->addSeparator();
+        trayMenu->addAction(exitAction);
+
+        connect(exitAction, &QAction::triggered, this, &QApplication::quit);
+        connect(showAction, &QAction::triggered, this, &QMainWindow::showNormal);
+        connect(hideAction, &QAction::triggered, this, &QMainWindow::hide);
+        trayIcon->setContextMenu(trayMenu);
+    }
 }
 
 typedef struct {
@@ -904,7 +941,17 @@ void MainWindow::paintEvent(QPaintEvent *event)
     QMainWindow::paintEvent(event);
 }
 
-void MainWindow::on_pushButtonExit_clicked() { qApp->exit(); }
+void MainWindow::on_pushButtonExit_clicked()
+{
+    auto res = QMessageBox::question(this,tr("提示"),tr("确定要退出 AKKO 驱动程序？"));
+    if(res == QMessageBox::Yes)
+        qApp->exit();
+}
+
+void MainWindow::on_pushButtonMin_clicked()
+{
+    this->showMinimized();
+}
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {

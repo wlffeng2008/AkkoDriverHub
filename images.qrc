@@ -11,5 +11,8 @@
         <file>images/a-left.png</file>
         <file>images/a-right.png</file>
         <file>images/AkkoFlag.png</file>
+        <file>images/logo.png</file>
+        <file>images/btn-close2.png</file>
+        <file>images/btn-min.png</file>
     </qresource>
 </RCC>

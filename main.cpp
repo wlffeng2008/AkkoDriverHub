@@ -4,11 +4,15 @@
 #include <QFontDatabase>
 #include <QLocale>
 #include <QTranslator>
+#include <QLibraryInfo>
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
 
     QTranslator translator;
+    QTranslator translatorB;
+    QTranslator translatorW;
+    {
     const QStringList uiLanguages = QLocale::system().uiLanguages();
     for (const QString &locale : uiLanguages) {
         const QString baseName = "AkkoDriverHub_" + QLocale(locale).name();
@@ -17,6 +21,14 @@ int main(int argc, char *argv[]) {
             break;
         }
     }
+        QString baseName = QLocale::system().name(); // 如 "zh_CN"
+        translatorB.load("qtbase_" + baseName, QLibraryInfo::path(QLibraryInfo::TranslationsPath));
+        translatorW.load("qt_" + baseName, QLibraryInfo::path(QLibraryInfo::TranslationsPath));
+
+        a.installTranslator(&translatorB);
+        a.installTranslator(&translatorW);
+    }
+
 
     QFontDatabase::addApplicationFont(QApplication::applicationDirPath() +
                                       "/fonts/MiSans-Bold.ttf");
@@ -83,6 +95,20 @@ int main(int argc, char *argv[]) {
 
         QScrollBar::handle:vertical:pressed,
         QScrollBar::handle:horizontal:pressed { background: rgba(160, 250, 160, 0.98); }
+
+        QMessageBox QPushButton {
+                border: 1px solid #6C9F50;
+                background-color: #2D7FDD;
+                color: white;
+                border-radius: 8px;
+                padding: 2px 2px;
+                min-width: 80px;
+                min-height: 24px; }
+
+        QMessageBox {min-width: 500px; min-height: 250px;}
+        QMessageBox QLabel#qt_msgbox_label{min-width: 450px; min-height: 120px; max-width: 450px; max-height: 520px; qproperty-alignment: AlignLeft; white-space: pre-wrap;font: bold 12px 微软雅黑;}
+        QMessageBox QLabel#qt_msgboxex_icon_label{ min-width: 32px; min-height: 32px; max-width: 32px; max-height: 32px;qproperty-alignment: AlignTop;}
+
 
 )");
 
